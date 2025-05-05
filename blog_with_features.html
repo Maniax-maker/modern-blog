@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Latest blog posts on tech, AI, and more. Stay informed and inspired.">
+  <meta name="keywords" content="blog, tech, AI, startup, articles">
+  <meta name="author" content="Modern Blog">
+  <title>Modern Blog</title>
+
+  <!-- Fixed: Tailwind CDN with dark mode support -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-XXXXXXX-X');
+  </script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    function applyTheme() {
+      const userTheme = localStorage.getItem('theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (userTheme === 'dark' || (!userTheme && systemDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    }
+    window.onload = applyTheme;
+
+    function estimateReadingTime(content) {
+      const words = content.trim().split(/\s+/).length;
+      return Math.ceil(words / 200);
+    }
+
+    function subscribe() {
+      var options = {
+        key: 'rzp_test_YourKeyHere',
+        amount: 50000,
+        currency: 'INR',
+        name: 'Modern Blog',
+        description: 'Subscription Payment',
+        handler: function (response) {
+          alert('Payment Successful!');
+        }
+      };
+      var rzp = new Razorpay(options);
+      rzp.open();
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+  <style>
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #3b82f6;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      display: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white">
+  <!-- Header -->
+  <header class="bg-white dark:bg-gray-800 shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Modern Blog</h1>
+      <nav class="space-x-4">
+        <a href="#" class="hover:underline text-blue-500">Home</a>
+        <a href="#blog" class="hover:underline">Blog</a>
+        <a href="#about" class="hover:underline">About</a>
+        <a href="#contact" class="hover:underline">Contact</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button onclick="toggleDarkMode()" class="px-2 py-1 rounded border">🌙</button>
+        <button onclick="document.getElementById('authModal').classList.remove('hidden')" class="px-2 py-1 border rounded">Login</button>
+        <button onclick="subscribe()" class="px-2 py-1 border rounded bg-green-500 text-white">Subscribe</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-cover bg-center py-20 text-center text-white" style="background-image: url('https://via.placeholder.com/1600x600?text=Modern+Blog')">
+    <div class="bg-black bg-opacity-50 p-10 rounded-lg max-w-2xl mx-auto">
+      <h2 class="text-4xl font-bold mb-4">Welcome to Modern Blog</h2>
+      <p class="text-lg">Tech, AI, Startups & more</p>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <main class="container mx-auto px-4 py-8">
+    <div class="mb-4 flex justify-between">
+      <input type="text" placeholder="Search..." class="border p-2 rounded w-1/2">
+      <select class="border p-2 rounded">
+        <option value="">All Tags</option>
+        <option value="AI">AI</option>
+        <option value="Tech">Tech</option>
+      </select>
+    </div>
+    <section id="blog" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <article class="bg-white dark:bg-gray-800 p-4 rounded shadow">
+        <img src="https://via.placeholder.com/600x400" alt="" class="rounded mb-2">
+        <h3 class="text-xl font-semibold mb-1">Exploring AI</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-300">Estimated Read: 3 min</p>
+        <p class="mb-2">Discover how AI is changing the world...</p>
+        <div class="flex space-x-2 text-sm">
+          <a href="#" class="text-blue-500">Facebook</a>
+          <a href="#" class="text-blue-500">Twitter</a>
+          <a href="#" class="text-blue-500">LinkedIn</a>
+        </div>
+      </article>
+      <article class="bg-white rounded-lg shadow p-4 blog-post dark:bg-gray-800 hover:scale-105 transform transition" data-category="Celebrity">
+        <img src="C:\Users\dell\Downloads\srkphoto.jpeg" alt="Shah Rukh Khan" class="rounded mb-4">
+        <h2 class="text-xl font-semibold mb-2">Shah Rukh Khan: The King of Bollywood</h2>
+        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">May 5, 2025</p>
+        <p class="mb-4">
+          Shah Rukh Khan has transcended generations with his charm and cinematic legacy. Read more about his rise, achievements, and global influence.
+        </p>
+        <a href="srk.html" class="text-blue-500 hover:underline">Read More</a>
+        <div class="mt-4 flex gap-4">
+          <a href="#" class="text-blue-500">Facebook</a>
+          <a href="#" class="text-blue-500">Twitter</a>
+          <a href="#" class="text-blue-500">LinkedIn</a>
+        </div>
+      </article>
+      <article class="bg-white rounded-lg shadow p-4 blog-post dark:bg-gray-800 hover:scale-105 transform transition" data-category="Celebrity">
+        <img src="C:\Users\dell\Downloads\babil_Khan.jpg" alt="Babil Khan" class="rounded mb-4">
+        <h2 class="text-xl font-semibold mb-2">Babil khan: suffering anxiety attack</h2>
+        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">May 5, 2025</p>
+        <p class="mb-4">
+          Babil khan is sufferiing from anxiety attack. Read more about him.
+        </p>
+        <a href="babil.html" class="text-blue-500 hover:underline">Read More</a>
+        <div class="mt-4 flex gap-4">
+          <a href="#" class="text-blue-500">Facebook</a>
+          <a href="#" class="text-blue-500">Twitter</a>
+          <a href="#" class="text-blue-500">LinkedIn</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="mt-16">
+      <h2 class="text-2xl font-bold mb-4">About Us</h2>
+      <p>We share content about Trending News.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="mt-16">
+      <h2 class="text-2xl font-bold mb-4">Contact</h2>
+      <form class="space-y-4">
+        <input type="text" placeholder="Name" class="w-full p-2 border rounded">
+        <input type="email" placeholder="Email" class="w-full p-2 border rounded">
+        <textarea placeholder="Message" class="w-full p-2 border rounded"></textarea>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded">Send</button>
+      </form>
+    </section>
+
+    <!-- Disqus Comments -->
+    <section class="mt-16">
+      <h2 class="text-2xl font-bold mb-4">Comments</h2>
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = 'blog-post-1';
+        };
+        (function () {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://your-disqus-shortname.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    </section>
+  </main>
+
+  <!-- Scroll to top -->
+  <button onclick="scrollToTop()" class="scroll-top-btn" id="scrollTop">↑</button>
+  <script>
+    window.addEventListener('scroll', () => {
+      const btn = document.getElementById('scrollTop');
+      btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+  </script>
+
+  <!-- Login/Signup Modal -->
+  <div id="authModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+    <div class="bg-white dark:bg-gray-800 p-6 rounded shadow-lg w-80">
+      <h3 class="text-xl font-bold mb-4">Login / Signup</h3>
+      <input type="email" placeholder="Email" class="w-full p-2 border mb-2 rounded">
+      <input type="password" placeholder="Password" class="w-full p-2 border mb-4 rounded">
+      <button class="bg-blue-500 text-white px-4 py-2 rounded w-full mb-2">Login</button>
+      <p class="text-sm text-center">Don't have an account? <a href="#" class="text-blue-500">Signup</a></p>
+      <button onclick="document.getElementById('authModal').classList.add('hidden')" class="mt-4 text-sm text-gray-500">Close</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 text-sm text-gray-600 dark:text-gray-300">
+    &copy; 2025 Modern Blog. All rights reserved.
+  </footer>
+</body>
+
+</html>
